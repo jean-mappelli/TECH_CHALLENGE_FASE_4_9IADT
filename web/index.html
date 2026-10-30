@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Triagem multimodal</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">TRIAGEM MULTIMODAL</p>
+        <p class="intro">Grave uma consulta em áudio ou um exercício de fisioterapia. O sistema analisa a gravação e devolve um relatório para revisão.</p>
+      </div>
+      <div id="status" class="status">Aguardando gravação</div>
+    </header>
+
+    <section class="identity panel">
+      <label for="patient">Identificação do paciente</label>
+      <input id="patient" value="Nome do paciente" autocomplete="off">
+    </section>
+
+    <section class="record-grid">
+      <article class="capture-card audio-card">
+        <div class="card-heading"><span class="number">01</span><div><h2>Relato em áudio</h2><p>Fale por até 60 segundos sobre seus sintomas.</p></div></div>
+        <div class="controls"><button id="audio-start" class="primary">Iniciar áudio</button><button id="audio-stop" disabled>Parar</button></div>
+        <div id="audio-time" class="timer">00:00</div>
+        <audio id="audio-preview" controls hidden></audio>
+        <button id="audio-send" class="send" disabled>Enviar áudio para análise</button>
+      </article>
+
+      <article class="capture-card video-card">
+        <div class="card-heading"><span class="number">02</span><div><h2>Exercício de fisioterapia</h2><p>Grave o movimento com a câmera do dispositivo.</p></div></div>
+        <div class="video-stage"><video id="video-preview" autoplay muted playsinline hidden></video><div id="video-countdown" class="countdown" hidden aria-live="assertive"></div></div>
+        <div class="controls"><button id="video-start" class="primary">Iniciar vídeo</button><button id="video-stop" disabled>Parar</button></div>
+        <div id="video-time" class="timer">00:00</div>
+        <button id="video-send" class="send" disabled>Enviar vídeo para análise</button>
+      </article>
+    </section>
+
+    <section id="report" class="report panel" hidden>
+      <div class="report-head"><div><p class="eyebrow">RESULTADO DA ANÁLISE</p><h2>Relatório do paciente</h2></div><span id="report-kind" class="badge"></span></div>
+      <div id="risk" class="risk"></div>
+      <div id="report-content"></div>
+      <div id="report-alerts"></div>
+    </section>
+  </main>
+  <script src="/static/app.js"></script>
+</body>
+</html>
